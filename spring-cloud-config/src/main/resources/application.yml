@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: spring-cloud-config
+  cloud:
+    config:
+      label: master
+      server:
+        git:
+          uri: https://github.com/LouisTuo/spring-cloud-config
+          # search-paths: respo
+          username: 958053629@qq.com
+          password: 13307193141xx
+server:
+  port: 8888
+
+eureka:
+  client:
+    serviceurl:
+      defaultZone: http://localhost:8761/eureka/

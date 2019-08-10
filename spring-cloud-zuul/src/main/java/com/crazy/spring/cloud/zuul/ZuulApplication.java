@@ -1,4 +1,4 @@
-package com.crazy.hello.hello.spring.cloud.zuul;
+package com.crazy.spring.cloud.zuul;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

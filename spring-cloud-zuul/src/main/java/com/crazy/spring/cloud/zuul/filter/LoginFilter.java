@@ -1,4 +1,4 @@
-package com.crazy.hello.hello.spring.cloud.zuul.filter;
+package com.crazy.spring.cloud.zuul.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;

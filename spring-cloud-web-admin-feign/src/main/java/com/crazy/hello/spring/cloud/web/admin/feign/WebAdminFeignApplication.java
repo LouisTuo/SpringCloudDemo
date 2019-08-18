@@ -15,7 +15,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 // 开启Feign功能
 @EnableFeignClients
-// 开启发现Eurke
+// 开启发现Eureka
 @EnableDiscoveryClient
 // 开启熔断器的监控仪表盘
 @EnableHystrixDashboard

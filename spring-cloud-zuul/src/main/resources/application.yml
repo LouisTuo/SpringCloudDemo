@@ -1,6 +1,10 @@
 spring:
   application:
     name: spring-cloud-zuul
+  boot:
+    admin:
+      client:
+        url: http://localhost:8084
 
 server:
   port: 8769

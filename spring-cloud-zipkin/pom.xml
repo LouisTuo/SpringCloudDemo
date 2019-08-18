@@ -10,11 +10,11 @@
         <relativePath>../spring-cloud-dependencies/pom.xml</relativePath>
     </parent>
 
-    <artifactId>spring-cloud-zuul</artifactId>
+    <artifactId>spring-cloud-zipkin</artifactId>
     <packaging>jar</packaging>
 
-    <name>spring-cloud-zuul</name>
-    <url>http://www.funtl.com</url>
+    <name>spring-cloud-zipkin</name>
+    <url>http://www.baidu.com</url>
     <inceptionYear>2018-Now</inceptionYear>
 
     <dependencies>
@@ -40,24 +40,22 @@
 
         <!-- Spring Cloud Begin -->
         <dependency>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-autoconfigure-ui</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
-        </dependency>
         <!-- Spring Cloud End -->
-
-        <!--admin客户端-->
-        <dependency>
-            <groupId>org.jolokia</groupId>
-            <artifactId>jolokia-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
@@ -66,7 +64,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.crazy.spring.cloud.zuul.ZuulApplication</mainClass>
+                    <mainClass>com.crazy.spring.cloud.zipkin.ZipKinApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

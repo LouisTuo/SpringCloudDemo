@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 // 这里有增加了熔断器
 
-@FeignClient(value = "spring-cloud-service-admin",fallback = AdminServiceHystrix.class)
+@FeignClient(value = "spring-cloud-service-admin", fallback = AdminServiceHystrix.class)
 public interface AdminService {
 
     @RequestMapping(value = "login", method = RequestMethod.GET)

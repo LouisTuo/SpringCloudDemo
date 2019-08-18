@@ -1,23 +1,21 @@
-package com.crazy.spring.cloud.config;
+package com.crazy.spring.cloud.zipkin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import zipkin.server.internal.EnableZipkinServer;
 
 /**
- * 配置中心
+ * TODO
  *
  * @author jaclon
- * @date 2019/8/10 17:36
+ * @date 2019/8/18 17:09
  */
 @SpringBootApplication
 @EnableEurekaClient
-// 开启SpirngCloudConfig 配置服务器功能
-@EnableConfigServer
-public class ConfigApplication {
-
+@EnableZipkinServer
+public class ZipKinApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ConfigApplication.class, args);
+        SpringApplication.run(ZipKinApplication.class, args);
     }
 }

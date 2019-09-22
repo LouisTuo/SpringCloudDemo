@@ -30,6 +30,30 @@
         <spring-boot-admin.version>2.1.6</spring-boot-admin.version>
     </properties>
 
+    <dependencies>
+        <!--java9之后的版本需要引入如下的jar包-->
+         <dependency>
+              <groupId>javax.xml.bind</groupId>
+              <artifactId>jaxb-api</artifactId>
+              <version>2.3.0</version>
+          </dependency>
+          <dependency>
+              <groupId>com.sun.xml.bind</groupId>
+              <artifactId>jaxb-impl</artifactId>
+              <version>2.3.0</version>
+          </dependency>
+          <dependency>
+              <groupId>com.sun.xml.bind</groupId>
+              <artifactId>jaxb-core</artifactId>
+              <version>2.3.0</version>
+          </dependency>
+          <dependency>
+              <groupId>javax.activation</groupId>
+              <artifactId>activation</artifactId>
+              <version>1.1.1</version>
+          </dependency>
+    </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>

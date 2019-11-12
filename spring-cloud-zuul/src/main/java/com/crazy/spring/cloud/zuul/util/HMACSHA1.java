@@ -1,12 +1,14 @@
 package com.crazy.spring.cloud.zuul.util;
 
-import org.jolokia.util.Base64Util;
-
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import java.util.Base64;
 
+/**
+ * HMACSHA1
+ */
 public class HMACSHA1 {
     private static final String MAC_NAME = "HmacSHA1";
     private static final String HMAC_SHA1 = "HmacSHA1";
@@ -49,7 +51,8 @@ public class HMACSHA1 {
     public static String hmacSHA1EncryptToString(String encryptText, String encryptKey) throws Exception {
         byte[] data = hmacSHA1Encrypt(encryptText, encryptKey);
         if (data != null){
-            return Base64Util.encode(data);
+           // return Base64Util.encode(data);
+            return Base64.getEncoder().encodeToString(data);
         }
         return "";
     }

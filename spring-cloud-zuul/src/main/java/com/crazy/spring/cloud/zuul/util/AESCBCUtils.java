@@ -2,10 +2,14 @@ package com.crazy.spring.cloud.zuul.util;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.codec.binary.Hex;
 
 import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 /**
@@ -25,9 +29,10 @@ import java.util.Base64;
  */
 @Slf4j
 public class AESCBCUtils {
+
     // 算法类型：用于指定生成AES的密钥
     private static String ALGORITHM = "AES";
-    // 密钥
+    //AES 设计有三个密钥长度：128，192，256 位
     private static String KEY = "AD42F6697B035B7580E4FEF93BE20BAD";
 
     // iv偏移量
@@ -53,7 +58,7 @@ public class AESCBCUtils {
      * 加密：对字符串进行加密，并返回十六进制字符串（hex）
      *
      * @param content 需要加密的字符串
-     * @param key 密钥
+     * @param key     密钥
      * @return 异常
      */
     public static String encrypt(String content, String key) {
@@ -65,7 +70,8 @@ public class AESCBCUtils {
             // 构造密钥
             SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(CHARSET), ALGORITHM);
             //创建初始向量iv用于指定密钥偏移量(可自行指定但必须为128位)，因为AES是分组加密，下一组的iv就用上一组加密的密文来充当
-            IvParameterSpec ivParameterSpec  = new IvParameterSpec(IV.getBytes(CHARSET), 0, OFFSET);
+            IvParameterSpec ivParameterSpec = new IvParameterSpec(IV.getBytes(CHARSET), 0, OFFSET);
+
             // 创建AES加密器
             Cipher cipher = Cipher.getInstance(TRANSFORMATION);
             // 使用加密器的加密模式
@@ -108,14 +114,37 @@ public class AESCBCUtils {
     }
 
     public static void main(String[] args) {
+        byte[] bytes = genKey();
+        // String base64Key = Base64.getEncoder().encodeToString(bytes);
+        String base64Key = Hex.encodeHexString(bytes);
+
+        System.out.println("动态生成的key："+ base64Key + "，长度：" + base64Key.length());
         String content = "123";
         System.out.println("待加密的字符串:" + content);
-        System.out.println("----加密前----");
-        String encrypt = AESCBCUtils.encrypt(content);
+        System.out.println("----加密后----");
+        String encrypt = AESCBCUtils.encrypt(content, base64Key);
+        // 也可以使用固定 key
+        // String encrypt = AESCBCUtils.encrypt(content);
         System.out.println(encrypt);
         System.out.println("----解密后----");
-        String decrypt = AESCBCUtils.decrypt(encrypt);
+        String decrypt = AESCBCUtils.decrypt(encrypt, base64Key);
         System.out.println(decrypt);
+    }
 
+    /**
+     * 使用KeyGenerator生成key
+     * @return 密钥
+     */
+    public static byte[] genKey() {
+        try {
+            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+            // size
+            keyGenerator.init(128);
+            SecretKey secretKey = keyGenerator.generateKey();
+            return secretKey.getEncoded();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return new byte[1];
     }
 }
